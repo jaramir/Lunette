@@ -99,11 +99,22 @@ function obj:bindHotkeys(userBindings)
   end
 end
 
+local margin = 2
+
+local function apply_margin(frame)
+    return {
+        x = frame.x + margin,
+        y = frame.y + margin,
+        w = frame.w - margin * 2,
+        h = frame.h - margin * 2
+    }
+end
+
 function exec(commandName)
   local window = hs.window.focusedWindow()
   local windowFrame = window:frame()
   local screen = window:screen()
-  local screenFrame = screen:frame()
+  local screenFrame = apply_margin(screen:frame())
   local currentFrame = window:frame()
   local newFrame
 
